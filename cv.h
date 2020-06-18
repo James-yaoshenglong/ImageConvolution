@@ -48,5 +48,6 @@ class BMPImage{
         BMPImage(const char*);
         ~BMPImage();
         bool save(const char*);
+        void convolution(double[3][3]);
 };
 #endif

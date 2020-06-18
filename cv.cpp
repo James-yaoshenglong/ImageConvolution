@@ -100,3 +100,31 @@ bool BMPImage::save(const char* path){
     pFile.close();
     return true;
 }
+
+void BMPImage::convolution(double kernel[3][3]){
+    PixelBlock source[height+2][width+2];
+    //generate the source image data matrix
+    for(int i=1; i<height+1; i++){
+        for(int j=1;j<width+1;j++){
+            source[i][j] = imageData[i-1][j-1];
+        }
+    }
+    //convolution
+    for(int i=1; i<height+1; i++){
+        for(int j=1;j<width+1;j++){
+            double sumB = 0;
+            double sumG = 0;
+            double sumR = 0;
+            for(int m=0;m<3;m++){
+                for(int n=0;n<3;n++){
+                    sumB += source[i+m-1][j+n-1].B*kernel[m][n];
+                    sumG += source[i+m-1][j+n-1].G*kernel[m][n];
+                    sumR += source[i+m-1][j+n-1].R*kernel[m][n];
+                }
+            }
+            imageData[i-1][j-1].B = sumB;
+            imageData[i-1][j-1].G = sumG;
+            imageData[i-1][j-1].R = sumR;
+        }
+    }
+}
