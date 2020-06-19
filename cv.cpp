@@ -19,7 +19,7 @@ BMPImage::BMPImage(const char* path):bmpFileHeader(),bmpInfoHeader(){
     pFile.open(path,std::ios::binary);
     if(!pFile){
         cout<<"Unable to open the file!"<<endl;
-        return;
+        exit(1);
     }
 
     /**2. Read Image File Content**/
@@ -52,8 +52,13 @@ BMPImage::BMPImage(const char* path):bmpFileHeader(),bmpInfoHeader(){
                 }
             }
         }
+        pFile.close();
     }
-    pFile.close();
+    else{
+        cout<<"Can not edit this type of image!"<<endl;
+        pFile.close();
+        exit(1);
+    }
 }
 
 BMPImage::~BMPImage(){
@@ -71,6 +76,7 @@ bool BMPImage::save(const char* path){
 
     pFile.open(path,std::ios::binary);
     if (!pFile){
+        cout<<"Fail to save the result!"<<endl;
         return false;
     }
     if(channels == 3){
