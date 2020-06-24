@@ -43,3 +43,4 @@ int main(int argc, char* argv[]){
     return 0;
 }
 //后续功能添加：实现命令行操作，添加更多的卷积核，添加图像翻转等操作
+//还有result文件夹需要手动创建的问题？？？，可以利用makefile来搞这个命令
