@@ -1,5 +1,5 @@
 # ImageConvolution
-##Introduction 
+## Introduction 
 A simple image convolution programme, later will update more image editing modes.
 
 ## How to use
